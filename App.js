@@ -10,6 +10,7 @@ import {
   Keyboard,
 } from "react-native";
 import { RegistrationScreen } from "./assets/Screens/RegistrationScreen/RegistrationScreen";
+import { LoginScreen } from "./assets/Screens/LoginScreen/LoginScreen";
 
 export default function App() {
   const [openKeyboard, setOpenKeyboard] = useState(false);
@@ -28,12 +29,11 @@ export default function App() {
           source={require("./assets/image/bg.jpg")}
         >
           {isLoginScreen ? (
-            <Text
-              style={styles.testText}
-              onPress={() => setIsLoginScreen(false)}
-            >
-              LOGIN PAGE
-            </Text>
+            <LoginScreen
+              openKeyboard={openKeyboard}
+              setOpenKeyboard={setOpenKeyboard}
+              setIsLoginScreen={setIsLoginScreen}
+            />
           ) : (
             <RegistrationScreen
               openKeyboard={openKeyboard}
