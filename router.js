@@ -52,6 +52,10 @@ export const useRoute = (isAuth) => {
         name="CreatePosts"
         component={CreatePostsScreen}
         options={{
+          headerLeft: () => (
+            <Feather name="arrow-left" size={24} color="#212121CC" />
+          ),
+          headerLeftContainerStyle: { marginLeft: 16 },
           tabBarIcon: () => <Feather name="plus" size={24} color="#fff" />,
           tabBarItemStyle: {
             height: 40,
@@ -62,6 +66,7 @@ export const useRoute = (isAuth) => {
           },
           headerTitleAlign: "center",
           headerTitle: "Create post",
+          tabBarHideOnKeyboard: true,
         }}
       />
       <MainTab.Screen
