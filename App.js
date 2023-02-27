@@ -4,5 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useRoute } from "./router";
 
 export default function App() {
-  return <NavigationContainer>{useRoute(true)}</NavigationContainer>;
+  const content = useRoute(true);
+  return <NavigationContainer>{content}</NavigationContainer>;
 }

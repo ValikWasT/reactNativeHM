@@ -2,11 +2,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 
-import { RegistrationScreen } from "./assets/Screens/AuthScreens/RegistrationScreen/RegistrationScreen";
-import { LoginScreen } from "./assets/Screens/AuthScreens/LoginScreen/LoginScreen";
-import { CreatePostsScreen } from "./assets/Screens/MainScreens/CreatePostsScreen/CreatePostsScreen";
-import { ProfileScreen } from "./assets/Screens/MainScreens/ProfileScreen/ProfileScreen";
-import { HomeScreen } from "./assets/Screens/MainScreens/HomeScreen/HomeScreen";
+import { RegistrationScreen } from "./src/Screens/AuthScreens/RegistrationScreen/RegistrationScreen";
+import { LoginScreen } from "./src/Screens/AuthScreens/LoginScreen/LoginScreen";
+import { CreatePostsScreen } from "./src/Screens/MainScreens/CreatePostsScreen/CreatePostsScreen";
+import { ProfileScreen } from "./src/Screens/MainScreens/ProfileScreen/ProfileScreen";
+import { HomeScreen } from "./src/Screens/MainScreens/HomeScreen/HomeScreen";
 
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();

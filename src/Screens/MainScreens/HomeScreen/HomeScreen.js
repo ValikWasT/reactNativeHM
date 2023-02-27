@@ -1,4 +1,3 @@
-import { Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { PostsScreen } from "../PostsScreen/PostsScreen";
 import { CommentsScreen } from "../CommentsScreen/CommentsScreen";
