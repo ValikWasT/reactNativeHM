@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
-export const PostsScreen = ({ route }) => {
+export const PostsScreen = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     if (route.params) {
@@ -20,11 +20,24 @@ export const PostsScreen = ({ route }) => {
             <Text style={styles.imageTitle}>{item.title}</Text>
             <View style={styles.description}>
               <View style={styles.comments}>
-                <Feather name="message-circle" size={18} color="#BDBDBD" />
+                <Feather
+                  onPress={() => navigation.navigate("Comments")}
+                  name="message-circle"
+                  size={18}
+                  color="#BDBDBD"
+                />
                 <Text style={styles.commentsNumber}>0</Text>
               </View>
               <View style={styles.location}>
                 <Feather
+                  onPress={() =>
+                    navigation.navigate("Map", {
+                      location: {
+                        location: item.location,
+                        title: item.locationTitle,
+                      },
+                    })
+                  }
                   style={styles.locationIcon}
                   name="map-pin"
                   size={18}

@@ -4,9 +4,9 @@ import { Feather } from "@expo/vector-icons";
 
 import { RegistrationScreen } from "./assets/Screens/AuthScreens/RegistrationScreen/RegistrationScreen";
 import { LoginScreen } from "./assets/Screens/AuthScreens/LoginScreen/LoginScreen";
-import { PostsScreen } from "./assets/Screens/MainScreens/PostsScreen/PostsScreen";
 import { CreatePostsScreen } from "./assets/Screens/MainScreens/CreatePostsScreen/CreatePostsScreen";
 import { ProfileScreen } from "./assets/Screens/MainScreens/ProfileScreen/ProfileScreen";
+import { HomeScreen } from "./assets/Screens/MainScreens/HomeScreen/HomeScreen";
 
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -36,16 +36,11 @@ export const useRoute = (isAuth) => {
       }}
     >
       <MainTab.Screen
-        name="Posts"
-        component={PostsScreen}
+        name="Home"
+        component={HomeScreen}
         options={{
+          headerShown: false,
           tabBarIcon: () => <Feather name="grid" size={24} color="#212121CC" />,
-          headerRightContainerStyle: { marginRight: 10 },
-          headerRight: () => (
-            <Feather name="log-out" size={24} color="#BDBDBD" />
-          ),
-          headerTitleAlign: "center",
-          headerTitle: "Posts",
         }}
       />
       <MainTab.Screen
