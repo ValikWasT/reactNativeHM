@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import { useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -13,6 +14,8 @@ import {
   Keyboard,
 } from "react-native";
 
+import { authSignUpUser } from "../../../../redux/auth/authOperations";
+
 const initialState = {
   login: "",
   email: "",
@@ -23,10 +26,19 @@ export const RegistrationScreen = ({ navigation }) => {
   const [openKeyboard, setOpenKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const [isHidePassword, setIsHidePassword] = useState(true);
+  const dispatch = useDispatch();
 
   const hideKeyboard = () => {
     setOpenKeyboard(false);
     Keyboard.dismiss();
+  };
+
+  const handleSubmit = () => {
+    setOpenKeyboard(false);
+    Keyboard.dismiss();
+    dispatch(authSignUpUser(state));
+    // console.log("click");
+    // setState(initialState);
   };
 
   return (
@@ -94,10 +106,7 @@ export const RegistrationScreen = ({ navigation }) => {
                   )}
                 </View>
                 <TouchableOpacity
-                  onPress={() => {
-                    setOpenKeyboard(false);
-                    console.log(state);
-                  }}
+                  onPress={() => handleSubmit()}
                   activeOpacity={0.8}
                   style={styles.btn}
                 >
