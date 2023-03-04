@@ -37,8 +37,7 @@ export const RegistrationScreen = ({ navigation }) => {
     setOpenKeyboard(false);
     Keyboard.dismiss();
     dispatch(authSignUpUser(state));
-    // console.log("click");
-    // setState(initialState);
+    setState(initialState);
   };
 
   return (
