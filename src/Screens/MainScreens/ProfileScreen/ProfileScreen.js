@@ -1,4 +1,7 @@
-import { Text } from "react-native";
+import { Text, Button } from "react-native";
+import { useDispatch } from "react-redux";
+import { authSignOutUser } from "../../../../redux/auth/authOperations";
 export const ProfileScreen = () => {
-  return <Text>ProfileScreen</Text>;
+  const dispatch = useDispatch();
+  return <Button onPress={() => dispatch(authSignOutUser())} title="log out" />;
 };
