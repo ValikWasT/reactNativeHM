@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "505680014080",
+    "project_id": "reactnativehm",
+    "storage_bucket": "reactnativehm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505680014080:android:b840c3365bdc83666261e5",
+        "android_client_info": {
+          "package_name": "com.app.reactNativeHM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505680014080-j2atolh039bkbq096p3t1hip7hfumunl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm8ODQ2keF3jsOMX1G5G143Cef3m8Vudk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505680014080-j2atolh039bkbq096p3t1hip7hfumunl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
