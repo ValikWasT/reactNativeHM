@@ -1,6 +1,14 @@
 import { Feather } from "@expo/vector-icons";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  uploadBytes,
+} from "firebase/storage";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import {
   Text,
   View,
@@ -10,6 +18,7 @@ import {
 } from "react-native";
 import { Camera } from "expo-camera";
 import { TextInput } from "react-native-gesture-handler";
+import { storage } from "../../../../firebase/config";
 
 const initialState = {
   uri: "",
@@ -22,6 +31,10 @@ export const CreatePostsScreen = ({ navigation }) => {
   const [state, setState] = useState(initialState);
   const [camera, setCamera] = useState(null);
   const [postReady, setPostReady] = useState(false);
+
+  const { userId, nickName } = useSelector((state) => state.auth);
+
+  console.log(userId, nickName);
 
   useEffect(() => {
     (async () => {
@@ -54,7 +67,41 @@ export const CreatePostsScreen = ({ navigation }) => {
       ...state,
       location: { latitude: location.latitude, longitude: location.longitude },
     };
+    await uploadPhotoToServer();
     navigation.navigate("Posts", { readyState });
+  };
+
+  // const uploadPhotoToServer = async () => {
+  //   const storage = getStorage(app);
+  //   const response = await fetch(state.uri);
+  //   const file = await response.blob();
+
+  //   const uniquePostId = uuidv4();
+  //   const storageRef = await ref(storage, `posts/${uniquePostId}`);
+  //   await uploadBytes(storageRef, file);
+
+  //   const processedPhoto = await getDownloadURL(
+  //     ref(storage, `postImage/${uniquePostId}`)
+  //   );
+
+  //   return processedPhoto;
+  // };
+
+  const uploadPhotoToServer = async () => {
+    const uniquePostId = nanoid();
+    const storageRef = ref(storage, `images/${uniquePostId}`);
+    fetch(state.uri)
+      .then((r) => r.blob())
+      .then((res) => uploadBytes(storageRef, res));
+    // console.log(state.uri);
+    // const firebaseApp = getStorage(app);
+    // const storage = getStorage(firebaseApp, "gs://reactnativehm.appspot.com/");
+    // const response = await (await fetch(state.uri)).blob();
+    // // const file = await response.blob();
+    // console.log(response);
+
+    // const result = await uploadBytesResumable(storageRef, response);
+    // await getDownloadURL(result.ref);
   };
 
   return (
