@@ -1,3 +1,4 @@
+import "react-native-get-random-values";
 import { Feather } from "@expo/vector-icons";
 import {
   ref,
@@ -40,7 +41,7 @@ export const CreatePostsScreen = ({ navigation }) => {
     (async () => {
       let cameraStatus = await Camera.requestCameraPermissionsAsync();
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted" || cameraStatus !== "granted") {
+      if (status !== "granted" || !cameraStatus.granted) {
         console.log("Permission to access location was denied");
         return;
       }
@@ -89,7 +90,7 @@ export const CreatePostsScreen = ({ navigation }) => {
 
   const uploadPhotoToServer = async () => {
     const uniquePostId = nanoid();
-    const storageRef = ref(storage, `images/${uniquePostId}`);
+    const storageRef = ref(storage, `images/qwerty`);
     fetch(state.uri)
       .then((r) => r.blob())
       .then((res) => uploadBytes(storageRef, res));
