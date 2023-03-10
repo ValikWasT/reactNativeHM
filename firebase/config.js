@@ -7,8 +7,8 @@ const firebaseConfig = {
   projectId: "reactnativehm",
   storageBucket: "reactnativehm.appspot.com",
   messagingSenderId: "505680014080",
-  appId: "1:505680014080:web:17a324b5e9e025266261e5",
-  measurementId: "G-KCYYJNR9YM",
+  appId: "1:505680014080:web:92bb537de7723a036261e5",
+  measurementId: "G-6XKLTZF24L",
 };
 
 export const app = initializeApp(firebaseConfig);
