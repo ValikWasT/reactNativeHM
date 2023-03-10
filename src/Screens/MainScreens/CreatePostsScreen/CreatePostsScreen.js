@@ -6,6 +6,7 @@ import {
   getDownloadURL,
   uploadBytes,
 } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -19,7 +20,8 @@ import {
 } from "react-native";
 import { Camera } from "expo-camera";
 import { TextInput } from "react-native-gesture-handler";
-import { storage } from "../../../../firebase/config";
+import { app } from "../../../../firebase/config";
+// import { storage } from "../../../../firebase/config";
 
 const initialState = {
   uri: "",
@@ -68,7 +70,8 @@ export const CreatePostsScreen = ({ navigation }) => {
       ...state,
       location: { latitude: location.latitude, longitude: location.longitude },
     };
-    await uploadPhotoToServer();
+    const photo = await uploadPhotoToServer();
+    console.log(photo);
     navigation.navigate("Posts", { readyState });
   };
 
@@ -89,20 +92,18 @@ export const CreatePostsScreen = ({ navigation }) => {
   // };
 
   const uploadPhotoToServer = async () => {
-    const uniquePostId = nanoid();
-    const storageRef = ref(storage, `images/qwerty`);
-    fetch(state.uri)
-      .then((r) => r.blob())
-      .then((res) => uploadBytes(storageRef, res));
-    // console.log(state.uri);
-    // const firebaseApp = getStorage(app);
-    // const storage = getStorage(firebaseApp, "gs://reactnativehm.appspot.com/");
-    // const response = await (await fetch(state.uri)).blob();
-    // // const file = await response.blob();
-    // console.log(response);
+    try {
+      const id = Date.now();
+      const firebaseApp = getStorage(app);
+      const storageRef = ref(firebaseApp, `images/${id}`);
+      const response = await fetch(state.uri);
+      const file = await response.blob();
 
-    // const result = await uploadBytesResumable(storageRef, response);
-    // await getDownloadURL(result.ref);
+      const result = await uploadBytesResumable(storageRef, file);
+      return await getDownloadURL(result.ref);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
